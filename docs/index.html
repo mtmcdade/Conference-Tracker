@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,80 +18,6 @@
             color: #333;
         }
 
-        .login-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .login-box {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-        }
-
-        .login-box h1 {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .login-box p {
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .login-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1rem;
-            margin-bottom: 20px;
-            transition: border-color 0.3s ease;
-        }
-
-        .login-input:focus {
-            outline: none;
-            border-color: #2a5298;
-        }
-
-        .login-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        }
-
-        .login-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .error-message {
-            color: #e74c3c;
-            margin-top: 15px;
-            font-size: 0.9rem;
-        }
-
-        .main-app {
-            display: none;
-        }
-
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -106,7 +31,6 @@
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            position: relative;
         }
 
         .header h1 {
@@ -115,19 +39,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
-        }
-
-        .logout-btn {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9rem;
         }
 
         .stats-grid {
@@ -356,36 +267,10 @@
             width: 16px;
         }
 
-        .event-links {
-            display: flex;
-            gap: 15px;
-            margin: 15px 0;
-            flex-wrap: wrap;
-        }
-
-        .event-link {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: #2a5298;
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 6px 12px;
-            border: 1px solid #2a5298;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .event-link:hover {
-            background: #2a5298;
-            color: white;
-        }
-
         .event-actions {
             display: flex;
             gap: 10px;
             margin-top: 15px;
-            flex-wrap: wrap;
         }
 
         .btn-small {
@@ -441,6 +326,21 @@
             color: #155724;
         }
 
+        .timeline {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #2a5298;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -494,102 +394,78 @@
                 align-items: flex-start;
                 gap: 15px;
             }
-
-            .event-links {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .event-actions {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Login Screen -->
-    <div id="loginContainer" class="login-container">
-        <div class="login-box">
-            <h1>🔒 Secure Access</h1>
-            <p>Conference Intelligence Pipeline<br>SDVOSB Internal Use Only</p>
-            <input type="password" id="passwordInput" class="login-input" placeholder="Enter access code" autocomplete="current-password">
-            <button onclick="checkPassword()" class="login-btn">Access Dashboard</button>
-            <div id="errorMessage" class="error-message"></div>
+    <div class="container">
+        <div class="header">
+            <h1>Conference Intelligence Pipeline</h1>
+            <p>SDVOSB Conference & Event Tracking System - Tracking VA, Federal Procurement & Medical Device Events</p>
         </div>
-    </div>
 
-    <!-- Main Application -->
-    <div id="mainApp" class="main-app">
-        <div class="container">
-            <div class="header">
-                <button class="logout-btn" onclick="logout()">🚪 Logout</button>
-                <h1>Conference Intelligence Pipeline</h1>
-                <p>SDVOSB Conference & Event Tracking System - Tracking VA, Federal Procurement & Medical Device Events</p>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-value" id="totalEvents">24</span>
+                <div class="stat-label">Total Events Tracked</div>
             </div>
-
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-value" id="totalEvents">24</span>
-                    <div class="stat-label">Total Events Tracked</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value" id="highPriority">6</span>
-                    <div class="stat-label">High Priority Events</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value" id="upcomingDeadlines">3</span>
-                    <div class="stat-label">Upcoming Deadlines</div>
-                </div>
-                <div class="stat-card">
-                    <span class="stat-value" id="lastUpdated">2 hrs ago</span>
-                    <div class="stat-label">Last Updated</div>
-                </div>
+            <div class="stat-card">
+                <span class="stat-value" id="highPriority">6</span>
+                <div class="stat-label">High Priority Events</div>
             </div>
+            <div class="stat-card">
+                <span class="stat-value" id="upcomingDeadlines">3</span>
+                <div class="stat-label">Upcoming Deadlines</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="lastUpdated">2 hrs ago</span>
+                <div class="stat-label">Last Updated</div>
+            </div>
+        </div>
 
-            <div class="controls">
-                <div class="controls-grid">
-                    <div class="input-group">
-                        <label for="searchKeywords">Search Keywords</label>
-                        <input type="text" id="searchKeywords" placeholder="VA, CPAP, procurement..." value="VA, sleep, CPAP, procurement">
-                    </div>
-                    <div class="input-group">
-                        <label for="dateRange">Date Range</label>
-                        <select id="dateRange">
-                            <option value="6">Next 6 months</option>
-                            <option value="12" selected>Next 12 months</option>
-                            <option value="18">Next 18 months</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="minImpact">Minimum Impact</label>
-                        <select id="minImpact">
-                            <option value="all">All Events</option>
-                            <option value="medium">Medium & High</option>
-                            <option value="high">High Only</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <button class="btn" onclick="refreshEvents()">🔄 Refresh Events</button>
-                    </div>
+        <div class="controls">
+            <div class="controls-grid">
+                <div class="input-group">
+                    <label for="searchKeywords">Search Keywords</label>
+                    <input type="text" id="searchKeywords" placeholder="VA, CPAP, procurement..." value="VA, sleep, CPAP, procurement">
+                </div>
+                <div class="input-group">
+                    <label for="dateRange">Date Range</label>
+                    <select id="dateRange">
+                        <option value="6">Next 6 months</option>
+                        <option value="12" selected>Next 12 months</option>
+                        <option value="18">Next 18 months</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="minImpact">Minimum Impact</label>
+                    <select id="minImpact">
+                        <option value="all">All Events</option>
+                        <option value="medium">Medium & High</option>
+                        <option value="high">High Only</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <button class="btn" onclick="refreshEvents()">🔄 Refresh Events</button>
                 </div>
             </div>
+        </div>
 
-            <div class="events-container">
-                <div class="events-header">
-                    <h2>Tracked Events</h2>
-                    <div class="filter-pills">
-                        <div class="pill active" onclick="filterEvents('all')">All</div>
-                        <div class="pill" onclick="filterEvents('high')">High Priority</div>
-                        <div class="pill" onclick="filterEvents('medium')">Medium Priority</div>
-                        <div class="pill" onclick="filterEvents('deadlines')">Upcoming Deadlines</div>
-                    </div>
+        <div class="events-container">
+            <div class="events-header">
+                <h2>Tracked Events</h2>
+                <div class="filter-pills">
+                    <div class="pill active" onclick="filterEvents('all')">All</div>
+                    <div class="pill" onclick="filterEvents('high')">High Priority</div>
+                    <div class="pill" onclick="filterEvents('medium')">Medium Priority</div>
+                    <div class="pill" onclick="filterEvents('deadlines')">Upcoming Deadlines</div>
                 </div>
+            </div>
 
-                <div id="eventsContainer">
-                    <div class="loading">
-                        <div class="spinner"></div>
-                        <p>Loading conference data...</p>
-                    </div>
+            <div id="eventsContainer">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading conference data...</p>
                 </div>
             </div>
         </div>
@@ -604,10 +480,7 @@
     </div>
 
     <script>
-        // Password protection - Change this to your desired password
-        const ACCESS_PASSWORD = "SDVOSB2025!";
-
-        // Sample conference data with registration and source links
+        // Sample conference data based on your document
         const sampleEvents = [
             {
                 id: 1,
@@ -623,10 +496,7 @@
                 description: "Premier veterans business conference with VA procurement officials and major contractors.",
                 relevance: "Direct VA decision-maker access, SDVOSB networking",
                 callForSpeakers: true,
-                categories: ["VA", "Veterans", "Procurement"],
-                registrationUrl: "https://www.nationalveteransconference.com/register",
-                sourceUrl: "https://www.nationalveteransconference.com/",
-                websiteUrl: "https://www.nationalveteransconference.com/"
+                categories: ["VA", "Veterans", "Procurement"]
             },
             {
                 id: 2,
@@ -642,10 +512,7 @@
                 description: "GSA OneGov, VA FSS, and MSPV panels - high signal for VA distribution channels.",
                 relevance: "VA procurement strategy insights, GSA vehicle updates",
                 callForSpeakers: false,
-                categories: ["Procurement", "GSA", "VA"],
-                registrationUrl: "https://thecgp.org/events/spring-conference/register",
-                sourceUrl: "https://thecgp.org/events/",
-                websiteUrl: "https://thecgp.org/"
+                categories: ["Procurement", "GSA", "VA"]
             },
             {
                 id: 3,
@@ -661,10 +528,7 @@
                 description: "VA & DoD health-IT modernization; digital therapeutics showcase.",
                 relevance: "Health IT trends, VA digital transformation",
                 callForSpeakers: true,
-                categories: ["HealthIT", "VA", "DoD"],
-                registrationUrl: "https://www.himssconference.org/registration",
-                sourceUrl: "https://www.himssconference.org/",
-                websiteUrl: "https://www.himss.org/"
+                categories: ["HealthIT", "VA", "DoD"]
             },
             {
                 id: 4,
@@ -680,10 +544,7 @@
                 description: "Hospital-supply leaders spot emerging CPAP/respiratory supply trends.",
                 relevance: "Medical device supply chain, CPAP market intelligence",
                 callForSpeakers: false,
-                categories: ["Medical", "Supply Chain", "CPAP"],
-                registrationUrl: "https://www.ahrmm.org/conference/registration",
-                sourceUrl: "https://www.ahrmm.org/conference/",
-                websiteUrl: "https://www.ahrmm.org/"
+                categories: ["Medical", "Supply Chain", "CPAP"]
             },
             {
                 id: 5,
@@ -699,10 +560,7 @@
                 description: "OEM deal-makers (ResMed, Fisher & Paykel) gather; tariff & trade panels included.",
                 relevance: "Direct OEM relationships, trade policy impacts",
                 callForSpeakers: true,
-                categories: ["Medical", "OEM", "Trade"],
-                registrationUrl: "https://www.advamed.org/medtech-conference/registration",
-                sourceUrl: "https://www.advamed.org/medtech-conference/",
-                websiteUrl: "https://www.advamed.org/"
+                categories: ["Medical", "OEM", "Trade"]
             },
             {
                 id: 6,
@@ -718,53 +576,12 @@
                 description: "FAR case law & protest hot-topics - good prep for bid challenges.",
                 relevance: "Legal compliance, protest preparation",
                 callForSpeakers: false,
-                categories: ["Legal", "Procurement", "FAR"],
-                registrationUrl: "https://www.americanbar.org/groups/public_contract_law/events_cle/fpi/registration/",
-                sourceUrl: "https://www.americanbar.org/groups/public_contract_law/events_cle/fpi/",
-                websiteUrl: "https://www.americanbar.org/groups/public_contract_law/"
+                categories: ["Legal", "Procurement", "FAR"]
             }
         ];
 
         let currentEvents = [...sampleEvents];
         let currentFilter = 'all';
-        let isLoggedIn = false;
-
-        // Password Protection Functions
-        function checkPassword() {
-            const password = document.getElementById('passwordInput').value;
-            const errorMessage = document.getElementById('errorMessage');
-            
-            if (password === ACCESS_PASSWORD) {
-                isLoggedIn = true;
-                document.getElementById('loginContainer').style.display = 'none';
-                document.getElementById('mainApp').style.display = 'block';
-                renderEvents();
-                updateStats();
-                errorMessage.textContent = '';
-            } else {
-                errorMessage.textContent = 'Invalid access code. Please try again.';
-                document.getElementById('passwordInput').value = '';
-            }
-        }
-
-        function logout() {
-            if (confirm('Are you sure you want to logout?')) {
-                isLoggedIn = false;
-                document.getElementById('loginContainer').style.display = 'flex';
-                document.getElementById('mainApp').style.display = 'none';
-                document.getElementById('passwordInput').value = '';
-                document.getElementById('errorMessage').textContent = '';
-            }
-        }
-
-        // Allow Enter key for password input
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    checkPassword();
-                }
-            });
-        });
 
         function formatDate(dateStr) {
             const date = new Date(dateStr);
@@ -784,8 +601,6 @@
         }
 
         function renderEvents() {
-            if (!isLoggedIn) return;
-            
             const container = document.getElementById('eventsContainer');
             
             if (currentEvents.length === 0) {
@@ -827,18 +642,6 @@
                             </div>
                         </div>
 
-                        <div class="event-links">
-                            <a href="${event.registrationUrl}" target="_blank" class="event-link">
-                                🎫 Register
-                            </a>
-                            <a href="${event.websiteUrl}" target="_blank" class="event-link">
-                                🌐 Event Website
-                            </a>
-                            <a href="${event.sourceUrl}" target="_blank" class="event-link">
-                                📋 Source Info
-                            </a>
-                        </div>
-
                         ${deadlineDays <= 14 && deadlineDays > 0 ? `
                             <div class="alert">
                                 <strong>⚠️ Registration Deadline:</strong> ${formatDate(event.regDeadline)} (${deadlineDays} days)
@@ -870,8 +673,6 @@
         }
 
         function filterEvents(filter) {
-            if (!isLoggedIn) return;
-            
             // Update active pill
             document.querySelectorAll('.pill').forEach(pill => {
                 pill.classList.remove('active');
@@ -885,3 +686,138 @@
                     currentEvents = sampleEvents.filter(e => e.priority === 'high');
                     break;
                 case 'medium':
+                    currentEvents = sampleEvents.filter(e => e.priority === 'medium');
+                    break;
+                case 'deadlines':
+                    currentEvents = sampleEvents.filter(e => {
+                        const deadlineDays = getDaysUntil(e.regDeadline);
+                        const earlyBirdDays = e.earlyBird ? getDaysUntil(e.earlyBird) : null;
+                        return (deadlineDays <= 14 && deadlineDays > 0) || (earlyBirdDays && earlyBirdDays <= 7 && earlyBirdDays > 0);
+                    });
+                    break;
+                default:
+                    currentEvents = [...sampleEvents];
+            }
+            
+            renderEvents();
+            updateStats();
+        }
+
+        function updateStats() {
+            document.getElementById('totalEvents').textContent = sampleEvents.length;
+            document.getElementById('highPriority').textContent = sampleEvents.filter(e => e.priority === 'high').length;
+            
+            const upcomingDeadlines = sampleEvents.filter(e => {
+                const deadlineDays = getDaysUntil(e.regDeadline);
+                return deadlineDays <= 14 && deadlineDays > 0;
+            }).length;
+            document.getElementById('upcomingDeadlines').textContent = upcomingDeadlines;
+            
+            document.getElementById('lastUpdated').textContent = '2 hrs ago';
+        }
+
+        function refreshEvents() {
+            const container = document.getElementById('eventsContainer');
+            container.innerHTML = '<div class="loading"><div class="spinner"></div><p>Refreshing conference data...</p></div>';
+            
+            // Simulate API call
+            setTimeout(() => {
+                renderEvents();
+                updateStats();
+                
+                // Show success message
+                const alert = document.createElement('div');
+                alert.className = 'alert success';
+                alert.innerHTML = '<strong>✅ Success!</strong> Conference data refreshed successfully.';
+                document.querySelector('.events-container').insertBefore(alert, document.getElementById('eventsContainer'));
+                
+                setTimeout(() => alert.remove(), 3000);
+            }, 2000);
+        }
+
+        function viewEventDetails(eventId) {
+            const event = sampleEvents.find(e => e.id === eventId);
+            if (!event) return;
+
+            const modalContent = document.getElementById('modalContent');
+            modalContent.innerHTML = `
+                <h2>${event.title}</h2>
+                <p><strong>Host:</strong> ${event.host}</p>
+                <p><strong>Date:</strong> ${formatDate(event.date)} - ${formatDate(event.endDate)}</p>
+                <p><strong>Location:</strong> ${event.location}</p>
+                <p><strong>Priority:</strong> <span class="priority-badge ${event.priority}">${event.priority}</span></p>
+                <p><strong>Registration Fee:</strong> ${event.fee}</p>
+                <p><strong>Registration Deadline:</strong> ${formatDate(event.regDeadline)}</p>
+                ${event.earlyBird ? `<p><strong>Early Bird Deadline:</strong> ${formatDate(event.earlyBird)}</p>` : ''}
+                
+                <h3>Description</h3>
+                <p>${event.description}</p>
+                
+                <h3>Relevance to SDVOSB</h3>
+                <p>${event.relevance}</p>
+                
+                <h3>Categories</h3>
+                <p>${event.categories.join(', ')}</p>
+                
+                ${event.callForSpeakers ? '<div class="alert success"><strong>Call for Speakers is Open!</strong></div>' : ''}
+                
+                <div style="margin-top: 20px;">
+                    <button class="btn" onclick="addToCalendar(${event.id})">Add to Calendar</button>
+                    <button class="btn btn-outline" onclick="setReminder(${event.id})">Set Reminder</button>
+                </div>
+            `;
+
+            document.getElementById('eventModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('eventModal').style.display = 'none';
+        }
+
+        function addToCalendar(eventId) {
+            const event = sampleEvents.find(e => e.id === eventId);
+            if (!event) return;
+
+            // Create Google Calendar URL
+            const startDate = new Date(event.date).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            const endDate = new Date(event.endDate).toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
+            
+            const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${startDate}/${endDate}&details=${encodeURIComponent(event.description)}&location=${encodeURIComponent(event.location)}`;
+            
+            window.open(calendarUrl, '_blank');
+        }
+
+        function setReminder(eventId) {
+            const event = sampleEvents.find(e => e.id === eventId);
+            if (!event) return;
+
+            alert(`Reminder set for ${event.title}!\n\nYou'll be notified:\n- 30 days before the event\n- 7 days before registration deadline\n- 3 days before early bird deadline`);
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('eventModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            renderEvents();
+            updateStats();
+            
+            // Set up search functionality
+            document.getElementById('searchKeywords').addEventListener('input', function() {
+                // In a real implementation, this would trigger a search
+                console.log('Search keywords:', this.value);
+            });
+            
+            // Auto-refresh every 30 minutes
+            setInterval(() => {
+                document.getElementById('lastUpdated').textContent = 'Just now';
+            }, 30 * 60 * 1000);
+        });
+    </script>
+</body>
+</html>
